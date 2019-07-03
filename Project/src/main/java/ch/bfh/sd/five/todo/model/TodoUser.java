@@ -61,7 +61,7 @@ public class TodoUser implements Serializable {
             }
         }
     }
-
+    //filter
     public Todo getTodoByIndex(int id) {
         return getTodos().stream().filter(t -> t.getId() == id).findAny().orElse(null);
     }
