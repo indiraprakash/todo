@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>ch.bfh.sd.five.todo.servlets.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>ch.bfh.sd.five.todo.servlets.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TodoController</servlet-name>
+        <servlet-class>ch.bfh.sd.five.todo.servlets.TodoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RestController</servlet-name>
+        <servlet-class>ch.bfh.sd.five.todo.servlets.RestController</servlet-class>
+    </servlet>
+
+    <!-- Redirects to root are directed to tho login controller -->
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
+
+    <!-- LoggerRegistrar must be started at application initialisation time to provide logging for all classes -->
+    <listener>
+        <listener-class>ch.bfh.sd.five.todo.servlets.LoggerRegistrar</listener-class>
+    </listener>
+    <!-- DatasourceRegistrar must be started at application initialisation time to provide access to the datasource for all classes -->
+    <listener>
+        <listener-class>ch.bfh.sd.five.todo.servlets.DatasourceRegistrar</listener-class>
+    </listener>
+
+    <!-- Application Settings -->
+    <!-- Datasources -->
+    <context-param>
+        <param-name>TodoDatasourceType</param-name>
+        <!-- Supported Values for TodoDatasourceType: ServletContext, File, Xml -->
+        <param-value>Xml</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TodoFileDatasource</param-name>
+        <param-value>TodoFileDatasource.javaserialized</param-value>
+    </context-param>
+    <context-param>
+        <param-name>TodoXmlDatasource</param-name>
+        <param-value>TodoXmlDatasource.xml</param-value>
+    </context-param>
+
+    <!-- Logger settings -->
+    <context-param>
+        <param-name>LoggerDatasourceType</param-name>
+        <!-- Supported Values for LoggerDatasourceType: ServletContext -->
+        <param-value>ServletContext</param-value>
+    </context-param>
+    <context-param>
+        <param-name>LogLevel</param-name>
+        <!-- Supported Values for LoggerDatasourceType: ERROR, WARNING, INFO, SUCCESS, DEBUG, ANY -->
+        <param-value>ANY</param-value>
+    </context-param>
+</web-app>
